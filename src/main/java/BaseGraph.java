@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class BaseGraph implements GraphProperty {
-    private HashSet<Vertex> reachedVertecies;
+    private HashSet<String> reachedVertecies;
 
     @Override
     public boolean execute(AbstractGraph abstractGraph) {
@@ -20,7 +20,7 @@ public class BaseGraph implements GraphProperty {
             if (v.getColor() == Color.red) {
                 System.out.println("Reachable vertex: " + v.getIndex());
                 baseVertecies.add(v);
-                reachedVertecies.add(v);
+                reachedVertecies.add(v.getName());
             }
         }
 
@@ -37,8 +37,8 @@ public class BaseGraph implements GraphProperty {
     void reachEach(Vertex vertex){
         for (AbstractEdge e : vertex.getEdgeList()){
             Vertex reachedVertex = e.getW();
-            if (!reachedVertecies.contains(reachedVertex)) {
-                reachedVertecies.add(reachedVertex);
+            if (!reachedVertecies.contains(reachedVertex.getName())) {
+                reachedVertecies.add(reachedVertex.getName());
                 reachEach(reachedVertex);
             }
         }
